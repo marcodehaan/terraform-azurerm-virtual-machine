@@ -1,6 +1,5 @@
 # Create a resource group
 resource "azurerm_resource_group" "main" {
-    provider = "azurerm.y"
 	name = "${var.rgroup_name}"
 	location = "${var.resource_location}"
   tags = {
@@ -16,7 +15,6 @@ resource "azurerm_resource_group" "main" {
 
 # create a network security group
 resource "azurerm_network_security_group" "main" {
-    provider = "azurerm.y"
   name                = "${var.nsg_name}"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
@@ -24,7 +22,6 @@ resource "azurerm_network_security_group" "main" {
 
 # create a ddos protection plan
 resource "azurerm_network_ddos_protection_plan" "main" {
-    provider = "azurerm.y"
   name                = "${var.plan_name}"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
@@ -32,7 +29,6 @@ resource "azurerm_network_ddos_protection_plan" "main" {
 
 # Create a virtual network within the resource group
 resource "azurerm_virtual_network" "main" {
-    provider = "azurerm.y"
   name                = "${var.vnet_name}"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
@@ -52,7 +48,6 @@ resource "azurerm_virtual_network" "main" {
 
 # create subnet
 resource "azurerm_subnet" "main" {
-    provider = "azurerm.y"
   name                 = "${var.subnet_name}"
   resource_group_name  = "${azurerm_resource_group.main.name}"
   virtual_network_name = "${azurerm_virtual_network.main.name}"
@@ -61,14 +56,12 @@ resource "azurerm_subnet" "main" {
 
 # asociate network security group to subnet
 resource "azurerm_subnet_network_security_group_association" "main" {
-    provider = "azurerm.y"
   subnet_id                 = "${azurerm_subnet.main.id}"
   network_security_group_id = "${azurerm_network_security_group.main.id}"
 }
 
 # create network rule
 resource "azurerm_network_security_rule" "ssh" {
-    provider = "azurerm.y"
   name                        = "ALLOW_SSH"
   priority                    = 100
   direction                   = "Inbound"
@@ -84,7 +77,6 @@ resource "azurerm_network_security_rule" "ssh" {
 
 # create network rule
 resource "azurerm_network_security_rule" "http" {
-    provider = "azurerm.y"
   name                        = "ALLOW_HTTP"
   priority                    = 200
   direction                   = "Inbound"
