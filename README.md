@@ -4,8 +4,9 @@ Public Terraform Module for Creating a Virtual Machine in Azure
 ## Usage
 
 ```hcl
-module blah {
-
+module "virtual-machines" {
+  source  = "github.com/marcodehaan/terraform-azurerm-virtual-machine"
+  version = "1.0.0"
 }
 ```
 
