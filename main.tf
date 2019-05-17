@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "main" {
 #provider "azurerm" {
 #  version = "=1.27" # use version 1.27
   #region     = "westeurope"
-}
+#}
 
 # create a network security group
 resource "azurerm_network_security_group" "main" {
