@@ -8,8 +8,8 @@ resource "azurerm_resource_group" "main" {
 }
 
 # set the provider and terraform version
-provider "azurerm" {
-  version = "=1.27" # use version 1.27
+#provider "azurerm" {
+#  version = "=1.27" # use version 1.27
   #region     = "westeurope"
 }
 
