@@ -31,6 +31,10 @@ variable "resource_location" {
     description = "Location to put all resources"
     default  = "westeurope"
     }
+variable "vm_name" {
+    description = "Name for the virtual machine"
+    default = "somedummyname-vm"
+}
 variable "vm_sku_size" {
     description = "SKU for Virtual Machine"
     default = "Standard_B1S"
