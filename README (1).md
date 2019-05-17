@@ -1,14 +1,11 @@
-# terraform-azurerm-virtual-machine
-Public Terraform Module for Creating a Virtual Machine in Azure
+# terraform-modules
+Public Terraform Modules
+
+## Create an Azure SQL Database
+
+This Terraform module creates a basic Azure SQL Database.
 
 ## Usage
-
-```hcl
-module blah {
-
-}
-```
-
 
 Some useful hints on how to use the modules in this repository
 
