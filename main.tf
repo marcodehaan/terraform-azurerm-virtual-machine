@@ -94,15 +94,15 @@ resource "azurerm_network_security_rule" "http" {
 
 resource "azurerm_public_ip" "main" {
   name                = "${var.vm_name}-pip"
-  location            = "${var.resource_group_location}"
-  resource_group_name = "${var.resource_group_name}"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "main" {
   name                  = "${var.vm_name}-nic"
-  location              = "${var.resource_group_location}"
-  resource_group_name   = "${var.resource_group_name}"
+  location              = "${azurerm_resource_group.main.location}"
+  resource_group_name   = "${azurerm_resource_group.main.name}"
 
   ip_configuration {
     name                          = "vm-ip-conf"
@@ -114,8 +114,8 @@ resource "azurerm_network_interface" "main" {
 
 resource "azurerm_virtual_machine" "vm" {
   name                  = "${var.vm_name}-vm"
-  location              = "${var.resource_group_location}"
-  resource_group_name   = "${var.resource_group_name}"
+  location              = "${azurerm_resource_group.main.location}"
+  resource_group_name   = "${azurerm_resource_group.main.name}"
   network_interface_ids = ["${azurerm_network_interface.main.id}"]
   vm_size               = "${var.vm_sku_size}"
 
@@ -140,8 +140,8 @@ resource "azurerm_virtual_machine" "vm" {
   }
   os_profile {
     computer_name  = "${var.vm_name}-vm"
-    admin_username = "${var.admin_user}"      # manier zoeken om dit vanuit de keyvault te pakken
-    admin_password = "${var.admin_pass}"  # manier zoeken om dit vanuit de keyvault te pakken
+    admin_username = "${var.cmd_user}"      # manier zoeken om dit vanuit de keyvault te pakken
+    admin_password = "${var.cmd_pass}"  # manier zoeken om dit vanuit de keyvault te pakken
   }
   os_profile_linux_config {
     disable_password_authentication = false
