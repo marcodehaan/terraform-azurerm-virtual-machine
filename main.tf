@@ -91,7 +91,7 @@ resource "azurerm_network_security_rule" "http" {
 }
 
 # create the VM
-
+/*
 resource "azurerm_public_ip" "main" {
   name                = "${var.vm_name}-pip"
   location            = "${azurerm_resource_group.main.location}"
@@ -150,3 +150,4 @@ resource "azurerm_virtual_machine" "vm" {
     environment = "staging"
   }
 }
+*/
