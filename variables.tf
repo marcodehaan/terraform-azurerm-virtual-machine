@@ -33,9 +33,18 @@ variable "resource_location" {
     default  = "westeurope"
     }
 */
+
 variable "vm_name" {
     description = "Name for the virtual machine"
     default = "somedummyname-vm"
+}
+variable "rgroup_name" {
+    description = "name of the resource group"
+    default = "somedummyname-rg"
+}
+variable "resource_location" {
+    description = "location of the resource"
+    default = "westeurope"
 }
 variable "vm_sku_size" {
     description = "SKU for Virtual Machine"
@@ -51,3 +60,7 @@ variable "cmd_pass" {
     default = "s0M3Stup1dPassW0rd"
     type = "string"
     }
+
+variable "subnet_id" {
+    description = "id of the subnet to use for the VM"
+}
