@@ -1,3 +1,4 @@
+/*
 # set the variables to create VMs for bi2
 variable "rgroup_name" {
     description = "Name of the resourcegroup"
@@ -31,6 +32,7 @@ variable "resource_location" {
     description = "Location to put all resources"
     default  = "westeurope"
     }
+*/
 variable "vm_name" {
     description = "Name for the virtual machine"
     default = "somedummyname-vm"
