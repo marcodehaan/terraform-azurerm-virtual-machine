@@ -1,19 +1,19 @@
 # create the VM
 resource "azurerm_public_ip" "main" {
   name                = "${var.vm_name}-pip"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = "${var.resource_location}"
+  resource_group_name = "${var.rgroup_name}"
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "main" {
   name                  = "${var.vm_name}-nic"
-  location              = "${azurerm_resource_group.main.location}"
-  resource_group_name   = "${azurerm_resource_group.main.name}"
+  location              = "${var.resource_location}"
+  resource_group_name   = "${var.rgroup_name}"
 
   ip_configuration {
     name                          = "vm-ip-conf"
-    subnet_id                     = "${azurerm_subnet.main.id}"
+    subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = "${azurerm_public_ip.main.id}"
   }
@@ -21,8 +21,8 @@ resource "azurerm_network_interface" "main" {
 
 resource "azurerm_virtual_machine" "vm" {
   name                  = "${var.vm_name}-vm"
-  location              = "${azurerm_resource_group.main.location}"
-  resource_group_name   = "${azurerm_resource_group.main.name}"
+  location              = "${var.resource_location}"
+  resource_group_name   = "${var.rgroup_name}"
   network_interface_ids = ["${azurerm_network_interface.main.id}"]
   vm_size               = "${var.vm_sku_size}"
 
